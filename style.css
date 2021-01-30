@@ -8,8 +8,10 @@
 
   #board{
     position: absolute;
-    /* top: 50%; */
     left: 50%;
-    /* margin-top: -320px; */
     margin-left: -345px;
+  }
+
+  h1{
+    text-align: center;
   }
