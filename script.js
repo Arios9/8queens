@@ -23,7 +23,8 @@ function create_board(){
 			iswhite=!iswhite;	
 		}
 		iswhite=!iswhite;	
-	}	
+	}
+	alert(table_element.clientWidth);
 }
 
 
@@ -63,7 +64,7 @@ function display_queens(){
 	// for(let j=0; j<8; j++)
 	// if(board[i][j].hasqueen)
 	// board[i][j].innerHTML="♛";
-	alert(solutions.length);
+	// alert(solutions.length);
 }
 
 function add_solution_to_array(){
