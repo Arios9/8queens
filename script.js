@@ -2,9 +2,10 @@
 
 
 var board=[];
+var solutions=[];
 create_board();
-var solutionfound=false;
 solver(0);
+display_queens();
 
 function create_board(){
 	var iswhite=true;
@@ -27,16 +28,15 @@ function create_board(){
 
 
 function solver(i){
-	if(i<8){
+	if(i==8)return;
 	for(let j=0; j<8; j++){
 		if(islegal(i,j)){
 			board[i][j].hasqueen=true;
-			if(i==7)solutionfound=true;
+			if(i==7)add_solution_to_array();
 			solver(i+1);
-			if(solutionfound)return;
 			board[i][j].hasqueen=false;
 		}
-	}}
+	}
 }
 
 function islegal(i,j){
@@ -58,14 +58,23 @@ function islegal(i,j){
 	return true;	
 }
 
-
-display_queens();
-
 function display_queens(){
+	// for(let i=0; i<8; i++)
+	// for(let j=0; j<8; j++)
+	// if(board[i][j].hasqueen)
+	// board[i][j].innerHTML="♛";
+	alert(solutions.length);
+}
+
+function add_solution_to_array(){
+
+	let solution_squares=[];
 	for(let i=0; i<8; i++)
 	for(let j=0; j<8; j++)
 	if(board[i][j].hasqueen)
-	board[i][j].innerHTML="♛";
+	solution_squares.push(board[i][j]);
+	solutions.push(solution_squares);
+	
 }
 
 
