@@ -1,18 +1,20 @@
 
 
 
-var board=[];
-var solutions=[];
+let board=[];
+let solutions=[];
+let current_solution = 0;
+let solution_number_element=document.getElementById("solution_number");
 create_board();
 solver(0);
-display_queens();
+display_queens(current_solution);
 
 function create_board(){
-	var iswhite=true;
-	var table_element=document.getElementById("board");
+	let iswhite=true;
+	let table_element=document.getElementById("board");
 	for(let i=0; i<8; i++){
 		board[i]=[];
-		var tr_element=document.createElement("tr");
+		let tr_element=document.createElement("tr");
 		table_element.appendChild(tr_element);
 		for(let j=0; j<8; j++){
 			board[i][j]= document.createElement("td");
@@ -24,7 +26,6 @@ function create_board(){
 		}
 		iswhite=!iswhite;	
 	}
-	alert(table_element.clientWidth);
 }
 
 
@@ -59,23 +60,39 @@ function islegal(i,j){
 	return true;	
 }
 
-function display_queens(){
-	// for(let i=0; i<8; i++)
-	// for(let j=0; j<8; j++)
-	// if(board[i][j].hasqueen)
-	// board[i][j].innerHTML="♛";
-	// alert(solutions.length);
+
+function display_queens(index){
+	clear_board();
+    let solution_squares = solutions[index];
+	for(let i=0; i<8; i++)
+	solution_squares[i].innerHTML="♛";
+	solution_number_element.innerHTML=current_solution+1;
 }
 
-function add_solution_to_array(){
+function clear_board(){
+	for(let i=0; i<8; i++)
+	for(let j=0; j<8; j++)
+	board[i][j].innerHTML="";
+}
 
+
+function add_solution_to_array(){
 	let solution_squares=[];
 	for(let i=0; i<8; i++)
 	for(let j=0; j<8; j++)
 	if(board[i][j].hasqueen)
 	solution_squares.push(board[i][j]);
-	solutions.push(solution_squares);
-	
+	solutions.push(solution_squares);	
 }
+
+document.getElementById("next_button").onclick = () => {
+	current_solution = (current_solution + 1)%92;
+	display_queens(current_solution);
+};
+
+
+
+
+
 
 
