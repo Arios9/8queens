@@ -86,9 +86,18 @@ function add_solution_to_array(){
 }
 
 document.getElementById("next_button").onclick = () => {
+	move_to_next_solution();
+};
+
+window.onkeypress = (e) => {
+	if(e.keyCode == 32)
+	move_to_next_solution();
+};
+
+function move_to_next_solution(){
 	current_solution = (current_solution + 1)%92;
 	display_queens(current_solution);
-};
+}
 
 
 
